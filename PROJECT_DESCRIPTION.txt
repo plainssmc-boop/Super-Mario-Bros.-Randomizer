@@ -1,0 +1,1 @@
+Full-chaos Super Mario Bros. NES randomizer written in Python. Randomizes level order, supported pipe/vine area transitions, and Warp Zone destinations with reproducible seeds and optional structural beatability checks. ROM not included.
