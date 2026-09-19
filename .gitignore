@@ -1,0 +1,20 @@
+# Never commit game ROMs
+*.nes
+*.fds
+*.unf
+*.unif
+
+# Generated randomized ROMs / backups / logs
+*_randomized.nes
+*.nes.bak
+*.log.txt
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
