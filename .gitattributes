@@ -1,0 +1,17 @@
+# Keep text behavior predictable across Windows, Linux, and CI.
+* text=auto
+
+*.py  text eol=lf
+*.md  text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.ps1 text eol=lf
+
+# ROMs, patches, and generated binary artifacts must never receive text conversion.
+*.nes binary
+*.fds binary
+*.unf binary
+*.unif binary
+*.ips binary
+*.bps binary
