@@ -9,9 +9,20 @@
 *.nes.bak
 *.log.txt
 
-# Python cache
+# Python cache / local environments
 __pycache__/
 *.py[cod]
+.venv/
+venv/
+ENV/
+.env
+.coverage
+htmlcov/
+
+# Build/package artifacts
+build/
+dist/
+*.egg-info/
 
 # OS/editor files
 .DS_Store
