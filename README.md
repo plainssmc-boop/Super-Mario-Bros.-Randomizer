@@ -19,6 +19,7 @@ It also includes SMB1-specific safety checks for preview areas, water rooms, sam
 ## Requirements
 
 - Python 3
+- CI currently verifies the project on **Python 3.13 and 3.14**, on both Windows and Linux
 - A legally obtained, compatible **Super Mario Bros. (World)/(USA)** `.nes` ROM
 - No third-party Python packages are required
 
@@ -133,6 +134,36 @@ Important options include:
 - `--ai-attempts NUMBER`
 - `--warp-mild`
 
+## Modern development checks
+
+The repository now includes automated checks designed around a current Windows development setup while remaining cross-platform.
+
+On **PowerShell 7**, run:
+
+```powershell
+pwsh -File .\tools\dev-check.ps1
+```
+
+That command:
+
+- prints the active PowerShell, Python, and Git versions;
+- warns if Python is older than the repository's current 3.13/3.14 CI target range;
+- compiles the Python source to catch syntax/import-time problems;
+- runs the ROM-free regression test suite;
+- verifies that the command-line help starts correctly; and
+- shows the Git working tree at the end.
+
+You can run the same Python checks directly:
+
+```powershell
+python -m compileall -q smb1_chaos_randomizer.py tests
+python -m unittest discover -s tests -v
+```
+
+GitHub Actions runs those checks automatically on **Windows and Linux with Python 3.13 and 3.14**. The tests deliberately do not require or distribute a copyrighted ROM.
+
+The repository also includes `.gitattributes` rules so modern Git installations keep source/documentation line endings consistent while treating NES ROMs and patch formats as binary data.
+
 ## Output files
 
 A normal run creates files similar to:
@@ -153,9 +184,13 @@ It also performs final structural invariant checks before writing randomized out
 ## Repository contents
 
 ```text
-smb1_chaos_randomizer.py  Main randomizer
-README.md                 Documentation and usage guide
-.gitignore                Blocks ROMs, generated outputs, caches, and editor files
+smb1_chaos_randomizer.py          Main randomizer
+tests/test_randomizer.py          ROM-free regression tests
+tools/dev-check.ps1               PowerShell 7 developer health check
+.github/workflows/python-ci.yml   Windows/Linux Python 3.13/3.14 CI
+.gitattributes                    Cross-platform text/binary Git rules
+README.md                         Documentation and usage guide
+.gitignore                        Blocks ROMs, generated outputs, caches, and editor files
 ```
 
 ## Legal note
